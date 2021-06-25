@@ -1,0 +1,85 @@
+/*
+COLORS:
+white: #f2f2f2
+*/
+body {
+  font-family: "Montserrat", sans-serif;
+  color: #323232;
+  background-color: #dfdfdf;
+}
+
+a {
+  color: #ca0c44;
+}
+
+#index.page {
+  color: white;
+}
+
+#amanda-santi {
+  background-color: #ff1653;
+  border: solid 2px #c01447;
+}
+
+.index-bkg {
+  background-color: rgb(255, 22, 83);
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23870030' fill-opacity='0.44' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+#projects.page {
+  background-color: #f2f2f2;
+}
+
+#contact.page {
+  background-color: #dfdfdf;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 52 52'%3E%3Cpath fill='%238b8b8b' fill-opacity='0.4' d='M0 17.83V0h17.83a3 3 0 0 1-5.66 2H5.9A5 5 0 0 1 2 5.9v6.27a3 3 0 0 1-2 5.66zm0 18.34a3 3 0 0 1 2 5.66v6.27A5 5 0 0 1 5.9 52h6.27a3 3 0 0 1 5.66 0H0V36.17zM36.17 52a3 3 0 0 1 5.66 0h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 0 1 0-5.66V52H36.17zM0 31.93v-9.78a5 5 0 0 1 3.8.72l4.43-4.43a3 3 0 1 1 1.42 1.41L5.2 24.28a5 5 0 0 1 0 5.52l4.44 4.43a3 3 0 1 1-1.42 1.42L3.8 31.2a5 5 0 0 1-3.8.72zm52-14.1a3 3 0 0 1 0-5.66V5.9A5 5 0 0 1 48.1 2h-6.27a3 3 0 0 1-5.66-2H52v17.83zm0 14.1a4.97 4.97 0 0 1-1.72-.72l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1 0-5.52l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43c.53-.35 1.12-.6 1.72-.72v9.78zM22.15 0h9.78a5 5 0 0 1-.72 3.8l4.44 4.43a3 3 0 1 1-1.42 1.42L29.8 5.2a5 5 0 0 1-5.52 0l-4.43 4.44a3 3 0 1 1-1.41-1.42l4.43-4.43a5 5 0 0 1-.72-3.8zm0 52c.13-.6.37-1.19.72-1.72l-4.43-4.43a3 3 0 1 1 1.41-1.41l4.43 4.43a5 5 0 0 1 5.52 0l4.43-4.43a3 3 0 1 1 1.42 1.41l-4.44 4.43c.36.53.6 1.12.72 1.72h-9.78zm9.75-24a5 5 0 0 1-3.9 3.9v6.27a3 3 0 1 1-2 0V31.9a5 5 0 0 1-3.9-3.9h-6.27a3 3 0 1 1 0-2h6.27a5 5 0 0 1 3.9-3.9v-6.27a3 3 0 1 1 2 0v6.27a5 5 0 0 1 3.9 3.9h6.27a3 3 0 1 1 0 2H31.9z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+#contact-info .list-group-item {
+  border: none;
+  background-color: unset;
+  margin-left: 69px; /* Leave this setting in theme.css! It positions contact info around the cellphone background graphic */
+}
+
+#contact-info .list-group-item .glyphicon {
+  display: none; /* Leave this setting in theme.css! It replaces the "contact us" glyphicons with the background cellphone graphic*/
+}
+
+#contact-info {
+  background-repeat: no-repeat;
+  background-image: url("../img/ping.svg");
+  background-size: 64px 64px;
+  background-position: left 30px bottom 35px;
+}
+
+.highlighted-section > .jumbotron {
+  background-color: transparent;
+}
+
+.navbar-inverse {
+  background-color: #323232;
+  border-color: #323232;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #d2d2d2;
+}
+
+.navbar > .container-fluid .navbar-brand {
+  color: #d2d2d2;
+}
+
+.portfolio-media {
+  background-color: #dfdfdf;
+  background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm33.414-6l5.95-5.95L45.95.636 40 6.586 34.05.636 32.636 2.05 38.586 8l-5.95 5.95 1.414 1.414L40 9.414l5.95 5.95 1.414-1.414L41.414 8zM40 48c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM9.414 40l5.95-5.95-1.414-1.414L8 38.586l-5.95-5.95L.636 34.05 6.586 40l-5.95 5.95 1.414 1.414L8 41.414l5.95 5.95 1.414-1.414L9.414 40z' fill='%23bebebe' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  border: solid 2px black;
+}
+
+.portfolio-media .scrolling-content {
+  border-right: solid 2px black;
+}
+
+.i-do {
+  background-color: white;
+}

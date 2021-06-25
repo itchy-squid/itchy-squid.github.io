@@ -1,0 +1,168 @@
+body {
+  font-size: 14px;
+}
+
+.navbar {
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.navbar-fixed-top + .page {
+  /* Adjust the placement of the first page after the navbar 
+   for a smooth transition when toggling navbar-fixed-top */
+  margin-top: 51px;
+}
+
+#index {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#index-header {
+  font-size: 22px;
+}
+
+#index-header #amanda-santi {
+  font-size: 32px;
+}
+
+#contact.page {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#mainNavbarContent {
+  padding-right: 0;
+}
+
+.page {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.page.chevron {
+  height: 20px;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 0%, 50% 100%, 0 0%);
+  clip-path: polygon(0 0, 100% 0, 100% 0%, 50% 100%, 0 0%);
+}
+
+.page.dummy-content {
+  min-height: 20%;
+  min-height: 20vh;
+  height: 20%;
+}
+
+.height-100 {
+  min-height: 100%;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.height-60 {
+  min-height: 60%;
+  min-height: 60vh;
+  height: 60%;
+}
+
+.height-40 {
+  min-height: 40%;
+  min-height: 40vh;
+  height: 40%;
+}
+
+.horizontal-center-container {
+  display: flex;
+  align-content: center;
+}
+
+.panel {
+  border: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 10px;
+}
+
+.panel-heading {
+  border-top-left-radius: 10px;
+}
+
+#contact-info .list-group {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.i-do {
+  width: 128px;
+  height: 128px;
+  border-radius: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.i-do img {
+  height: 64px;
+  width: 64px;
+}
+
+.i-do h3 {
+  font-size: 20px;
+}
+
+#what-do-i-do {
+  margin-bottom: 60px;
+  margin-top: 0px;
+}
+
+.i-do-detail {
+  margin-bottom: 40px;
+}
+
+#contact.page .panel-heading {
+  background: none;
+  padding: 10px 30px;
+  border: none;
+}
+
+#contact.page #contact-info .panel-heading {
+  padding: 10px 30px;
+}
+
+#contact.page #location-info .panel-body {
+  padding: 10px 30px 30px 30px;
+}
+
+.project {
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+.scrolling-container-content {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -ms-overflow-style: none; /* IE 10+ */
+  overflow: -moz-scrollbars-none; /* Firefox */
+}
+
+.scrolling-container-content::-webkit-scrollbar {
+  display: none;
+}
+
+.scrolling-container-content .scrolling-content {
+  flex: 0 0 auto;
+}
+
+.portfolio-media .scrolling-content:last-of-type {
+  border-right: none;
+}
+
+.portfolio-media.portfolio-media-empty {
+  width: 100%;
+  height: 400px;
+}
+
+.incomplete {
+  display: none;
+}
