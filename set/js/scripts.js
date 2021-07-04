@@ -163,19 +163,14 @@ class BoardCalculator {
     constructor(viewport, layout) {
         this.layout = layout;
 
-        const targetWidth = viewport.width;
-        const targetHeight = viewport.height;
-
-        this.origin = { x: viewport.width / 2, y: viewport.height / 2 };
-
         this.scalingFactor = Math.min(
-            targetHeight / (AbsoluteCardHeight * layout.cardsPerCol),
-            targetWidth / (AbsoluteCardWidth * layout.cardsPerRow)
+            viewport.height / (AbsoluteCardHeight * layout.cardsPerCol),
+            viewport.width / (AbsoluteCardWidth * layout.cardsPerRow)
         );
 
         this.offset = {
-            x: (targetWidth - (this.cardSpaceWidth * layout.cardsPerRow)) / 2 + viewport.left,
-            y: (targetHeight - (this.cardSpaceHeight * layout.cardsPerCol)) / 2 + viewport.top,
+            x: (viewport.width - (this.cardSpaceWidth * layout.cardsPerRow)) / 2 + viewport.left,
+            y: (viewport.height - (this.cardSpaceHeight * layout.cardsPerCol)) / 2 + viewport.top,
         };
     }
 
@@ -364,8 +359,8 @@ class Board {
         const padding = {
             left: 0,
             right: 0,
-            top: 25,
-            bottom: 75
+            top: 0,
+            bottom: 0
         };
 
         return {
