@@ -162,16 +162,20 @@ class BoardCalculator {
 
     constructor(viewport, layout) {
         this.layout = layout;
+
+        const targetWidth = viewport.width;
+        const targetHeight = viewport.height;
+
         this.origin = { x: viewport.width / 2, y: viewport.height / 2 };
 
         this.scalingFactor = Math.min(
-            viewport.height / (AbsoluteCardHeight * layout.cardsPerCol),
-            viewport.width / (AbsoluteCardWidth * layout.cardsPerRow)
+            targetHeight / (AbsoluteCardHeight * layout.cardsPerCol),
+            targetWidth / (AbsoluteCardWidth * layout.cardsPerRow)
         );
 
         this.offset = {
-            x: (viewport.width - (this.cardSpaceWidth * layout.cardsPerRow)) / 2,
-            y: (viewport.height - (this.cardSpaceHeight * layout.cardsPerCol)) / 2,
+            x: (targetWidth - (this.cardSpaceWidth * layout.cardsPerRow)) / 2 + viewport.left,
+            y: (targetHeight - (this.cardSpaceHeight * layout.cardsPerCol)) / 2 + viewport.top,
         };
     }
 
@@ -288,8 +292,9 @@ class Board {
     }
 
     handleInput(ctx, click) {
-        var layout = selectLayout(ctx.canvas, Layouts);
-        var boardCalculator = new BoardCalculator(ctx.canvas, layout);
+        var bounds = this.getBounds(ctx.canvas);
+        var layout = selectLayout(bounds, Layouts);
+        var boardCalculator = new BoardCalculator(bounds, layout);
 
         var handled = _.some(this.cards, (val, idx) => val.handleInput(click, boardCalculator.getCardBounds(idx)));
         if (handled === false) {
@@ -339,8 +344,9 @@ class Board {
     }
 
     render(ctx) {
-        var layout = selectLayout(ctx.canvas, Layouts);
-        var boardCalculator = new BoardCalculator(ctx.canvas, layout);
+        var bounds = this.getBounds(ctx.canvas);
+        var layout = selectLayout(bounds, Layouts);
+        var boardCalculator = new BoardCalculator(bounds, layout);
 
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -352,6 +358,17 @@ class Board {
         this.cards.forEach((card, idx) => {
             card.render(ctx, boardCalculator.getCardBounds(idx), this);
         });
+    }
+
+    getBounds(viewport) {
+        const horizontalPadding = 0;
+        const verticalPadding = 50;
+        return {
+            left: horizontalPadding,
+            top: verticalPadding,
+            width: viewport.width - 2 * horizontalPadding,
+            height: viewport.height - 2 * verticalPadding
+        };
     }
 }
 
@@ -522,8 +539,8 @@ class Game {
 }
 
 
-const selectLayout = (viewport, layouts) => {
-    const diffs = layouts.map((val, idx) => ({ layout: val, diff: Math.abs(getAspectRatio(viewport.width, viewport.height) - val.ratio) }));
+const selectLayout = ({ width, height }, layouts) => {
+    const diffs = layouts.map((val, idx) => ({ layout: val, diff: Math.abs(getAspectRatio(width, height) - val.ratio) }));
     const min = _.minBy(diffs, 'diff');
     return min.layout;
 }
@@ -551,7 +568,7 @@ class Card {
     get background() {
         return {
             render: (ctx, color) => {
-                const margin = 25;
+                const margin = 25; // shading margin
                 const bounds = {
                     left: margin,
                     top: margin,
