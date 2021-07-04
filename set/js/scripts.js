@@ -361,13 +361,18 @@ class Board {
     }
 
     getBounds(viewport) {
-        const horizontalPadding = 0;
-        const verticalPadding = 50;
+        const padding = {
+            left: 0,
+            right: 0,
+            top: 25,
+            bottom: 75
+        };
+
         return {
-            left: horizontalPadding,
-            top: verticalPadding,
-            width: viewport.width - 2 * horizontalPadding,
-            height: viewport.height - 2 * verticalPadding
+            left: padding.left,
+            top: padding.top,
+            width: viewport.width - padding.left - padding.right,
+            height: viewport.height - padding.top - padding.bottom
         };
     }
 }
