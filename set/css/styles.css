@@ -1,7 +1,8 @@
 #canvasContainer {
     width: 100%;
-    height: 100vh; /* For normal browsers */
-    height: calc(var(--vh, 1vh) * 100); /* For idiotic mobile browsers */
+    min-height: 100vh; /* For normal browsers */
+    min-height: -webkit-fill-available; /* For iOS */
+    min-height: calc(var(--vh, 1vh) * 100); /* For idiotic mobile browsers */
 }
 
 #canvasContainer.isSelecting {
