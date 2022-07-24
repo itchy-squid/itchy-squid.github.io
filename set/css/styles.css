@@ -1,7 +1,7 @@
 #canvasContainer {
     margin-bottom: 20px;
     width: 100%;
-    height: 100vh; /* For normal browsers */
+    height: 95vh; /* For normal browsers */
 }
 
 #canvasContainer.isSelecting {
