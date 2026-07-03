@@ -1,444 +1,911 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Amanda Santi</title>
+<title>Amanda Santi — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #43d9c8;
+    --bg: #0d1117;
+    --surface: #131a24;
+    --border: #21262d;
+    --border2: #2a323d;
+    --text-heading: #f0f6fc;
+    --text-body: #c9d1d9;
+    --text-secondary: #b3bcc6;
+    --text-muted: #8b949e;
+    --text-faint: #5b6572;
+    --grid: linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+            linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    background-image: var(--grid);
+    background-size: 28px 28px;
+    color: var(--text-body);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  p { margin: 0; }
+  h1, h2, h3 { margin: 0; }
+  ::selection { background: var(--accent); color: var(--bg); }
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/style.css">
-<link rel="stylesheet" href="./assets/css/theme.css">
+  /* Container */
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 
-<!-- favicon -->
-<link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/img/favicon/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/assets/img/favicon/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+  /* Reveal animation */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: none;
+  }
 
+  /* Print */
+  @media print {
+    @page { margin: 0.5in; }
+    .site-nav, .no-print { display: none !important; }
+    section { break-inside: avoid; }
+  }
+
+  /* ── NAV ── */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(13,17,23,.72);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .nav-logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-heading);
+    letter-spacing: .02em;
+  }
+  .nav-logo .slash { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: color .2s;
+  }
+  .nav-link:hover { color: var(--accent); }
+  .nav-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--accent);
+    border: none;
+    border-radius: 6px;
+    padding: 7px 13px;
+    transition: filter .2s;
+  }
+  .nav-btn:hover { filter: brightness(1.1); }
+
+  /* ── HERO ── */
+  #top { scroll-margin-top: 80px; }
+  .hero-inner {
+    padding: 88px 32px 72px;
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: .08em;
+    margin-bottom: 18px;
+  }
+  .hero-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    color: var(--text-heading);
+  }
+  .hero-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--text-muted);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+  .hero-blurb {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 52ch;
+    margin-top: 24px;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .btn-solid {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--accent);
+    border-radius: 7px;
+    padding: 11px 20px;
+    transition: filter .2s;
+    display: inline-block;
+  }
+  .btn-solid:hover { filter: brightness(1.1); }
+  .btn-outline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-body);
+    border: 1px solid var(--border2);
+    border-radius: 7px;
+    padding: 11px 20px;
+    transition: border-color .2s, color .2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+  }
+  .hero-contact a {
+    color: var(--text-muted);
+    transition: color .2s;
+  }
+  .hero-contact a:hover { color: var(--accent); }
+  .hero-contact .in-label { color: var(--accent); }
+
+  /* At a glance panel */
+  .glance-panel {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(19,26,36,.6);
+    padding: 22px;
+  }
+  .glance-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .glance-header .status { color: var(--accent); }
+  .glance-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 13px;
+  }
+  .glance-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    flex: none;
+    width: 88px;
+  }
+  .glance-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-heading);
+    flex: 1;
+    text-align: right;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    scroll-margin-top: 80px;
+  }
+  .section-border { border-top: 1px solid var(--border); }
+  .section-pad { padding: 64px 32px; }
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  /* ── WORK ── */
+  .featured-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: linear-gradient(160deg, rgba(67,217,200,.06), rgba(19,26,36,.5));
+    padding: 32px;
+  }
+  .featured-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .featured-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--text-heading);
+  }
+  .featured-company {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .period-pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--bg);
+    background: var(--accent);
+    border-radius: 999px;
+    padding: 4px 12px;
+    white-space: nowrap;
+  }
+  .bullets { margin-top: 20px; }
+  .bullet-row {
+    display: flex;
+    gap: 11px;
+    margin-bottom: 12px;
+  }
+  .bullet-dash {
+    color: var(--accent);
+    flex: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .bullet-text {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+  .bullet-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 9px;
+  }
+  .tag-chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    border: 1px solid rgba(67,217,200,.35);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .previously-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  .prev-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+  }
+  .prev-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--text-heading);
+  }
+  .prev-company {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: 13px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .prev-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+  }
+
+  /* ── PROJECTS ── */
+  .projects-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .projects-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(19,26,36,.5);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color .2s, transform .55s ease;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .project-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .project-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: .06em;
+  }
+  .project-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--text-heading);
+    margin: 10px 0 8px;
+  }
+  .project-desc {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+    flex: 1;
+  }
+  .stack-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .stack-chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    padding: 2px 7px;
+  }
+  .project-footer {
+    display: flex;
+    gap: 18px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .project-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-body);
+    transition: color .2s;
+  }
+  .project-link:hover { color: var(--accent); }
+  .project-internal {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+  }
+
+  /* ── AWARDS ── */
+  .edu-awards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 48px;
+    padding: 64px 32px;
+  }
+  .edu-school {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text-heading);
+  }
+  .edu-degree {
+    font-size: 14px;
+    color: var(--text-body);
+    margin: 4px 0;
+  }
+  .edu-years {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .edu-detail {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    max-width: 40ch;
+  }
+  .award-row {
+    display: flex;
+    gap: 16px;
+    padding: 11px 0;
+    border-top: 1px solid var(--border);
+  }
+  .award-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    flex: none;
+    width: 44px;
+  }
+  .award-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-heading);
+  }
+  .award-items {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  /* ── CONTACT ── */
+  #contact { border-top: 1px solid var(--border); }
+  .contact-inner {
+    padding: 80px 32px;
+    text-align: center;
+  }
+  .contact-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+  }
+  .contact-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    letter-spacing: -.02em;
+    color: var(--text-heading);
+    margin-bottom: 26px;
+  }
+  .contact-email {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--accent);
+    border-radius: 8px;
+    padding: 13px 26px;
+    transition: filter .2s;
+  }
+  .contact-email:hover { filter: brightness(1.1); }
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+  }
+  .contact-links a {
+    color: var(--text-muted);
+    transition: color .2s;
+  }
+  .contact-links a:hover { color: var(--accent); }
+  .footer-bar {
+    border-top: 1px solid var(--border);
+  }
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 20px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 760px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      padding: 64px 24px 48px;
+      gap: 36px;
+    }
+    .hero-name { font-size: 42px; }
+    .edu-awards-grid { grid-template-columns: 1fr; padding: 48px 24px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .section-pad { padding: 48px 24px; }
+    .container { padding-left: 24px; padding-right: 24px; }
+    .nav-inner { padding: 12px 24px; }
+    .contact-inner { padding: 56px 24px; }
+    .contact-heading { font-size: 30px; }
+    .footer-inner { padding: 16px 24px; }
+  }
+</style>
+</head>
 <body>
-    <nav class="navbar navbar-inverse" id="mainNav">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarContent">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#" class="smooth-scroll">code monkey. tinker.</a>
-            </div>
-            <div class="collapse navbar-collapse" id="mainNavbarContent">
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#index" class="smooth-scroll">Home</a>
-                    </li>
-                    <li>
-                        <a href="#about" class="smooth-scroll">About</a>
-                    </li>
-                    <li>
-                        <a href="#projects" class="smooth-scroll">Projects</a>
-                    </li>
-                    <li>
-                        <a href="#contact" class="smooth-scroll">Contact Me</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo"><span class="slash">/</span> amanda.santi</a>
+    <div class="nav-links">
+      <a href="#work" class="nav-link">work</a>
+      <a href="#projects" class="nav-link">projects</a>
+      <a href="#awards" class="nav-link">awards</a>
+      <button class="nav-btn" onclick="window.print()">↓ Résumé PDF</button>
+    </div>
+  </div>
+</nav>
 
-    <div id="index" class="page highlighted-section index-bkg">
-        <div class="container" id="index-header">
-            <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-                the online portfolio of
-                <span id="amanda-santi">Amanda Santi</span>
-            </div>
-        </div>
+<!-- HERO -->
+<section id="top">
+  <div class="container hero-inner">
+    <!-- Left: text -->
+    <div data-reveal style="transition-delay: 0s;">
+      <div class="hero-kicker">// systems design · architecture · .NET · cloud</div>
+      <h1 class="hero-name">Amanda Santi</h1>
+      <div class="hero-title">Software Engineer</div>
+      <p class="hero-blurb">I build robust, scalable system architectures — over 15 years across systems design, .NET, and cloud. I'm at my best taking a vague idea, mapping the roadmap to make it enterprise-ready, and rallying a team to deliver it.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-solid">View projects →</a>
+        <a href="mailto:amanda.santi@live.com" class="btn-outline">Get in touch</a>
+      </div>
+      <div class="hero-contact">
+        <a href="https://www.linkedin.com/in/amandasanti" target="_blank"><span class="in-label">in</span> linkedin.com/in/amandasanti</a>
+      </div>
+    </div>
+    <!-- Right: at a glance panel -->
+    <div data-reveal class="no-print glance-panel" style="transition-delay: .12s;">
+      <div class="glance-header">
+        <span>at_a_glance</span>
+        <span class="status">● open to talk</span>
+      </div>
+      <div class="glance-row"><span class="glance-key">experience</span><span class="glance-val">15+ years</span></div>
+      <div class="glance-row"><span class="glance-key">focus</span><span class="glance-val">Systems design &amp; architecture</span></div>
+      <div class="glance-row"><span class="glance-key">cloud</span><span class="glance-val">Azure · Functions · Bicep</span></div>
+      <div class="glance-row"><span class="glance-key">stack</span><span class="glance-val">.NET · C# · SQL / EF</span></div>
+      <div class="glance-row"><span class="glance-key">status</span><span class="glance-val">Employed</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="section-border">
+  <div class="container section-pad">
+    <div data-reveal>
+      <div class="section-label">▹ current_role</div>
     </div>
 
-    <div id="index-chevron" class="page chevron index-bkg">
-    </div>
-
-
-    <div id="about" class="page page-default">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 text-center">
-                    <h2 id="what-do-i-do">What do I do?</h2>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="i-do text-center">
-                        <img src="./assets/img/computer-monitor-128.png">
-                        <h3>I code.</h3>
-                    </div>
-                    <p class="i-do-detail text-justify">
-                        I'm a full-stack application developer with a particular interest in scalable systems. I've 
-                        written everything from an operating system kernel in C to a single-page web app in React. 
-                        I love mastering new technologies. My primary expertise is in C# and systems architecture.
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <div class="i-do text-center">
-                        <img src="./assets/img/team-128.png">
-                        <h3>I organize.</h3>
-                    </div>
-                    <p class="i-do-detail text-justify">
-                        My happy place includes large quantities of well-organized code. My heart leaps for AGILE
-                        development cycles, UML code diagrams, and short CI/CD release trains. My vacations feature 
-                        color-coded spreadsheet timetables. My family runs on a bullet journal. Organization is 
-                        something I do at my core.
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <div class="i-do text-center">
-                        <img src="./assets/img/robot-128.png">
-                        <h3>I create.</h3>
-                    </div>
-                    <p class="i-do-detail text-justify">
-                        I draw; I sculpt; I build server racks and deploy Windows domains on virtualized servers. 
-                        I go on the occasional crafting hyperfixation. If it involves making something or learning 
-                        how to make something, I've probably tried it.
-                    </p>
-                </div>
-            </div>
+    <!-- Featured card -->
+    <div data-reveal class="featured-card">
+      <div class="featured-header">
+        <div>
+          <div class="featured-role">Principal Software Developer</div>
+          <div class="featured-company">HCSS</div>
         </div>
-    </div>
-
-    <div id="projects" class="page">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h2>Projects</h2>
-                </div>
-            </div>
-
-            <div class="row project">
-                <div class="col-xs-12 col-md-6">
-                    <img class="img-responsive portfolio-media" src="./assets/img/portfolio/triplesv2-600x400.png">
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <h3 class="media-heading">Triples, v2</h3>
-                    <p>
-                        I spent a weekend porting a popular card game to Javascript as a way of sharpening 
-                        my Javascript skills. As with my first port of the game, every deal of the cards 
-                        guarantees at least one set. This version is best played on a tablet shared amongst 
-                        friends.
-                    </p>
-                    <p>
-                        I might have an addiction to this game. 
-                    </p>
-                    <p>
-                        Technologies I worked with on this project:
-                        <ul>
-                            <li>HTML 5</li>
-                            <li>Javascript</li>
-                            <li>JQuery</li>
-                        </ul>
-                    </p>
-                    <p>The project is online at
-                        <a href="https://www.amandasanti.com/set/">amandasanti.com/set/</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row project incomplete">
-                <div class="col-xs-12 col-md-6">
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <h3 class="media-heading">Docjuris</h3>
-                    <p>
-                    </p>
-                    <p>
-                        Technologies I worked with on this project:
-                        <ul>
-                            <li>React</li>
-                            <li>ASP.NET Core 2</li>
-                            <li>Entity Framework</li>
-                            <li>C#</li>
-                            <li>Typescript</li>
-                            <li>CSS</li>
-                        </ul>
-                    </p>
-                    <p>The project is online at
-                        <a href="http://app.docjuris.com">app.docjuris.com</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row project">
-                <div class="col-xs-12 col-md-6">
-                    <img class="img-responsive portfolio-media" src="./assets/img/portfolio/lumivert-600x400.png">
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <h3 class="media-heading">Lumivert Lighting, LLC</h3>
-                    <p>
-                        Lumivert needed their product line published online in a way that could be easily managed by
-                        company staff. Together we settled on hosting their product offering with Shopify. The client 
-                        chose a favorite template, which I then modified to meet their unique needs. Other responsibilities 
-                        included data architecture, data entry and photo editing.
-                    </p>
-                    <p>
-                        Technologies I worked with on this project:
-                        <ul>
-                            <li>Liquid</li>
-                            <li>CSS</li>
-                            <li>HTML</li>
-                            <li>Adobe Photoshop</li>
-                            <li>Graphic Design</li>
-                        </ul>
-                    </p>
-                    <p>The project is online at
-                        <a href="http://www.lumivertlighting.com">www.lumivertlighting.com</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row project">
-                <div class="col-xs-12 col-md-6">
-                    <img class="img-responsive portfolio-media" src="./assets/img/portfolio/pipesim-600x400.png">
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <h3 class="media-heading">Pipesim GIS</h3>
-                    <p>
-                        Schlumberger's PIPESIM team needed a toolkit which could render a large pipeline network 
-                        over a map to replace existing logic. I worked extensively with Schlumberger's architects to 
-                        design and implement a toolkit which would fill their feature requirements while remaining 
-                        maintainable, extensible, and reliable. I also setup TFS builds which published the toolkit 
-                        to the company's internal NuGet repository, worked with management on team coordination and 
-                        deadlines, and setup an automation framework and automated tests for catching regressions.
-                    </p>
-                    <p>
-                        Technologies I worked with on this project:
-                        <ul>
-                            <li>C#</li>
-                            <li>OpenInventor</li>
-                            <li>NuGet</li>
-                            <li>TFS Build</li>
-                            <li>WPF</li>
-                        </ul>
-                    </p>
-                    <p>PIPESIM resources are available online at
-                        <a href="https://www.software.slb.com/products/pipesim?tab=Overview">the PIPESIM product
-                            page</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row project">
-                <div class="col-xs-12 col-md-6">
-                    <div class="portfolio-media scrolling-container">
-                        <div class="scrolling-container-content">
-                            <img class="scrolling-content" src="./assets/img/portfolio/sociyall01-225x400.jpg">
-                            <img class="scrolling-content" src="./assets/img/portfolio/sociyall02-225x400.jpg">
-                            <img class="scrolling-content" src="./assets/img/portfolio/sociyall03-225x400.jpg">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-md-6">
-                    <h3 class="media-heading">Sociyall</h3>
-                    <p>
-                        Startup Neuric wanted to showcase their comprehensive semantic network and it's application to
-                        data analytics at Austin's SXSW conference with a content aggregation app. I lead the app 
-                        development team and contributed to development by completing the middle-layer logic, code 
-                        architecture and database architecture. By working with a third-party REST API, I pulled in 
-                        social media posts written as JSON data to an AWS repository. I ran the information through 
-                        Neuric's proprietary, C++ parser and transformed the results for the PostGreSQL back-end.
-                    </p>
-                    <p>Technologies I worked with on this project:
-                    <ul>
-                        <li>AWS</li>
-                        <li>REST</li>
-                        <li>JSON</li>
-                        <li>SQL</li>
-                        <li>C#</li>
-                        <li>Entity Framework</li>
-                        <li>Performance Profiling</li>
-                        <li>UML</li>
-                    </ul>
-                    </p>
-                    <p>
-                        Archived project resources can be accessed via
-                        <a href="https://www.facebook.com/sociyall/">the Sociyall Facebook page</a>.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row project incomplete">
-                <div class="col-xs-12 col-md-6">
-                    <div class="portfolio-media portfolio-media-empty"></div>
-                </div>
-
-                <div class="col-xs-12 col-md-6">
-                    <h3 class="media-heading">Neuric Crime Aggregation</h3>
-                    <p>
-                    </p>
-                    <p>Technologies I worked with on this project:
-                    <ul>
-                        <li>AWS</li>
-                        <li>REST</li>
-                        <li>JSON</li>
-                        <li>SQL</li>
-                        <li>C#</li>
-                        <li>Entity Framework</li>
-                        <li>UML</li>
-                    </ul>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row project">
-                <div class="col-xs-12 col-md-6">
-                    <div class="portfolio-media scrolling-container">
-                        <div class="scrolling-container-content">
-                            <img class="scrolling-content" src="./assets/img/portfolio/triples01-240x400.png">
-                            <img class="scrolling-content" src="./assets/img/portfolio/triples03-240x400.png">
-                            <img class="scrolling-content" src="./assets/img/portfolio/triples04-240x400.png">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-md-6">
-                    <h3 class="media-heading">Triples</h3>
-                    <p>
-                        I wrote a Windows Phone port of a beloved card game as a way to explore Windows Phone
-                        development. The primary challenge of the project was in the UI/UX design, in figuring 
-                        out how to translate the format of the game from a table-top game to a cellphone game. 
-                        As for the gameplay logic, I quickly generated levels by pre-generating each level and 
-                        then caching it's seed for later access by the player.
-                    </p>
-                    <p>Technologies I worked with on this project:
-                    <ul>
-                        <li>C#</li>
-                        <li>Silverlight</li>
-                        <li>UI/UX Design</li>
-                        <li>MS Expression Studio</li>
-                        <li>Windows Phone</li>
-                    </ul>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row project incomplete">
-                <div class="col-xs-12 col-md-6">
-                    <div class="portfolio-media portfolio-media-empty"></div>
-                </div>
-
-                <div class="col-xs-12 col-md-6">
-                    <h3 class="media-heading">Neuric Search</h3>
-                    <p>
-                    </p>
-                    <p>Technologies I worked with on this project:
-                    <ul>
-                        <li>WPF</li>
-                        <li>C#</li>
-                        <li>C++ Interop</li>
-                        <li>Threading</li>
-                        <li>Optimization</li>
-                        <li>Serialization</li>
-                        <li>Performance Profiling</li>
-                    </ul>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row project">
-                <div class="col-xs-12 col-md-6">
-                    <img class="img-responsive portfolio-media" src="./assets/img/portfolio/mrtonygame-600x400.jpg">
-                </div>
-
-                <div class="col-xs-12 col-md-6">
-                    <h3 class="media-heading">Mr. Tony Game (MTG)</h3>
-                    <p>
-                        As a personal project, my husband and I put together a desktop application in order to play a
-                        popular collectible-card game.
-                        Players could import decks from a deck-building website for the same game, then use the deck to
-                        draw
-                        and place cards just as in the hard-copy version of the game. Any moves were sent over the
-                        network
-                        to listening peers.
-                    </p>
-                    <p>Technologies I worked with on this project:
-                    <ul>
-                        <li>WPF</li>
-                        <li>C#</li>
-                        <li>Networking</li>
-                        <li>Compression</li>
-                        <li>Parsing</li>
-                        <li>Adobe Photoshop</li>
-                    </ul>
-                    </p>
-                </div>
-            </div>
+        <div class="period-pill">2024 – Present</div>
+      </div>
+      <div class="bullets">
+        <div class="bullet-row">
+          <span class="bullet-dash">–</span>
+          <div class="bullet-text">
+            Establishing the company data warehouse on Databricks — building pipelines that read from thousands of source databases and sync them to Parquet, packaged as Databricks Asset Bundles for repeatable, versioned deployment.
+            <span class="bullet-tags">
+              <span class="tag-chip">Databricks</span>
+              <span class="tag-chip">Python</span>
+              <span class="tag-chip">Asset Bundles</span>
+              <span class="tag-chip">Parquet</span>
+            </span>
+          </div>
         </div>
-    </div>
-
-    <div id="contact" class="page page-default">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-5">
-                    <div class="panel panel-default" id="contact-info">
-                        <div class="panel-heading">
-                            <h2>Contact</h2>
-                        </div>
-                        <div class="panel-body">
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <a href="mailto:amanda.santi@live.com" id="mailto">
-                                        <span class="glyphicon glyphicon-envelope"></span>
-                                        <span>amanda.santi@live.com</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-7">
-                    <div class="panel panel-default" id="location-info">
-                        <div class="panel-heading">
-                            <h2>Location</h2>
-                        </div>
-                        <div class="panel-body">
-                            <div class="horizontal-center-container">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111026.1484041802!2d-95.72169921777765!3d29.587195408849663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640de10e11b70cb%3A0x2779e11b2263d8cc!2sSugar%20Land%2C%20TX!5e0!3m2!1sen!2sus!4v1693542149611!5m2!1sen!2sus"
-                                    width="100%" height="450" frameborder="0" style="border:0" allowfullscreen>
-                                </iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="bullet-row">
+          <span class="bullet-dash">–</span>
+          <div class="bullet-text">
+            Building a framework that lets internal teams safely take AI-assisted "vibe code" apps to production on their own — giving non-specialist teams the guardrails, testing, and review standards to self-serve their internal tools with confidence.
+            <span class="bullet-tags">
+              <span class="tag-chip">Platform</span>
+              <span class="tag-chip">CI/CD</span>
+              <span class="tag-chip">Governance</span>
+            </span>
+          </div>
         </div>
+        <div class="bullet-row">
+          <span class="bullet-dash">–</span>
+          <div class="bullet-text">
+            Driving site reliability across the product suite — owning database maintenance, serving on the architecture review committee and helping teams prepare for reviews, and running fire drills to keep systems dependable at scale.
+            <span class="bullet-tags">
+              <span class="tag-chip">SRE</span>
+              <span class="tag-chip">Database</span>
+              <span class="tag-chip">Architecture</span>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
 
-</body>
+    <!-- Previously -->
+    <div data-reveal>
+      <div class="previously-label">Previously</div>
+      <div class="prev-row">
+        <div class="prev-role">Senior DevOps Specialist <span class="prev-company">· HCSS</span></div>
+        <div class="prev-period">2023 – 2024</div>
+      </div>
+      <div class="prev-row">
+        <div class="prev-role">Supervisor <span class="prev-company">· HCSS</span></div>
+        <div class="prev-period">2022 – 2023</div>
+      </div>
+      <div class="prev-row">
+        <div class="prev-role">Senior Software Developer <span class="prev-company">· HCSS</span></div>
+        <div class="prev-period">2018 – 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-<script type="text/javascript" src="./lib/jquery-smooth-scroll/jquery.smooth-scroll.min.js"></script>
-<script type="text/javascript" src="./assets/js/main.js"></script>
+<!-- PROJECTS -->
+<section id="projects" class="section-border">
+  <div class="container section-pad">
+    <div data-reveal class="projects-header">
+      <div class="section-label" style="margin-bottom:0;">▹ selected_work</div>
+      <div class="projects-sub">case studies + personal projects</div>
+    </div>
+    <div class="projects-grid">
+
+      <!-- Advent of Code -->
+      <div data-reveal class="project-card">
+        <div class="project-top">
+          <span class="project-tag">PERSONAL PROJECT</span>
+          <span class="project-year">2020 – present</span>
+        </div>
+        <div class="project-title">Advent of Code</div>
+        <p class="project-desc">Every year since 2020 — a running record of how I break down algorithmic puzzles. Source on GitHub; no live demo by nature.</p>
+        <div class="stack-chips">
+          <span class="stack-chip">Python</span>
+          <span class="stack-chip">Algorithms</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://github.com/itchy-squid/AdventOfCode" target="_blank" class="project-link">→ source</a>
+        </div>
+      </div>
+
+      <!-- Database Tycoon -->
+      <div data-reveal class="project-card">
+        <div class="project-top">
+          <span class="project-tag">PERSONAL PROJECT</span>
+          <span class="project-year">2024</span>
+        </div>
+        <div class="project-title">Database Tycoon</div>
+        <p class="project-desc">A silly game-jam entry — built fast and for fun, because not everything has to be enterprise-grade.</p>
+        <div class="stack-chips">
+          <span class="stack-chip">Game Jam</span>
+          <span class="stack-chip">Godot</span>
+        </div>
+        <div class="project-footer">
+          <a href="https://asanti.itch.io/database-tycoon" target="_blank" class="project-link">→ live demo</a>
+          <a href="https://github.com/itchy-squid/game-jam/tree/main/Database%20Tycoon" target="_blank" class="project-link">→ source</a>
+        </div>
+      </div>
+
+      <!-- Set -->
+      <div data-reveal class="project-card">
+        <div class="project-top">
+          <span class="project-tag">PERSONAL PROJECT</span>
+          <span class="project-year">2023</span>
+        </div>
+        <div class="project-title">Set — the card game</div>
+        <p class="project-desc">A browser build of the pattern-matching game Set, with clean, responsive gameplay — hosted right here on this site.</p>
+        <div class="stack-chips">
+          <span class="stack-chip">JavaScript</span>
+          <span class="stack-chip">UI</span>
+        </div>
+        <div class="project-footer">
+          <a href="/set" class="project-link">→ live demo</a>
+          <a href="https://github.com/itchy-squid/itchy-squid.github.io/tree/master/set" target="_blank" class="project-link">→ source</a>
+        </div>
+      </div>
+
+      <!-- Nightly DB -->
+      <div data-reveal class="project-card">
+        <div class="project-top">
+          <span class="project-tag">CASE STUDY · HCSS</span>
+          <span class="project-year">2023</span>
+        </div>
+        <div class="project-title">Nightly DB Maintenance Engine</div>
+        <p class="project-desc">Serverless system that runs maintenance across thousands of databases nightly and flags query-performance regressions before they reach production.</p>
+        <div class="stack-chips">
+          <span class="stack-chip">Azure Functions</span>
+          <span class="stack-chip">Bicep</span>
+          <span class="stack-chip">SQL</span>
+        </div>
+        <div class="project-internal">◆ internal · walkthrough on request</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION + AWARDS -->
+<section id="awards" class="section-border">
+  <div class="container edu-awards-grid">
+
+    <!-- Education -->
+    <div data-reveal>
+      <div class="section-label">▹ education</div>
+      <div class="edu-school">Carnegie Mellon University</div>
+      <div class="edu-degree">B.S. in Computer Science</div>
+      <div class="edu-years">2004 – 2008</div>
+      <p class="edu-detail">Capstone pair project included implementation of an x86-based kernel with threading library and drivers. (C, ASM)</p>
+    </div>
+
+    <!-- Awards -->
+    <div data-reveal>
+      <div class="section-label">▹ awards &amp; recognition</div>
+      <div class="award-row">
+        <div class="award-year">2025</div>
+        <div>
+          <div class="award-title">HCSS Devvy Award · Winner</div>
+          <div class="award-items">Champion Archivist</div>
+        </div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2024</div>
+        <div>
+          <div class="award-title">HCSS Devvy Award · Winner</div>
+          <div class="award-items">Glue Award</div>
+        </div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2024</div>
+        <div>
+          <div class="award-title">HCSS Ideas Cup · Winner</div>
+          <div class="award-items">Impact · Best in Show</div>
+        </div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2023</div>
+        <div>
+          <div class="award-title">HCSS Devvy Award · Winner</div>
+          <div class="award-items">Outsider of the Year</div>
+        </div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2022</div>
+        <div>
+          <div class="award-title">HCSS Devvy Award · Nominee</div>
+          <div class="award-items">Glue Award · Persistence Award</div>
+        </div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2021</div>
+        <div>
+          <div class="award-title">HCSS Devvy Award · Nominee</div>
+          <div class="award-items">Emerging Leader · Persistence Award · Unsung Hero</div>
+        </div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2020</div>
+        <div>
+          <div class="award-title">HCSS Devvy Award · Nominee</div>
+          <div class="award-items">Emerging Leader · Pathfinder</div>
+        </div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2020</div>
+        <div>
+          <div class="award-title">HCSS Ideas Cup · Winner</div>
+          <div class="award-items">Efficiency Award</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<section id="contact">
+  <div class="container contact-inner">
+    <div data-reveal>
+      <div class="contact-kicker">// let's build something reliable</div>
+      <div class="contact-heading">Get in touch</div>
+      <a href="mailto:amanda.santi@live.com" class="contact-email">amanda.santi@live.com</a>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/amandasanti" target="_blank">linkedin.com/in/amandasanti</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <div class="footer-inner">
+      <span>© 2026 Amanda Santi</span>
+      <span>designed &amp; built for reliability</span>
+    </div>
+  </div>
+</section>
+
 <script>
-    installSmoothScroll("#mainNav");
-    installStickyNavbar("#mainNav");
-</script>
+  // Scroll-reveal
+  const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+  const reveal = el => { el.classList.add('revealed'); };
 
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { reveal(en.target); io.unobserve(en.target); } });
+    }, { threshold: 0.05 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(reveal);
+  }
+  // Fallback: reveal everything after 1.4s
+  setTimeout(() => revealEls.forEach(reveal), 1400);
+</script>
+</body>
 </html>
